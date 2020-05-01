@@ -7,13 +7,14 @@
   "scripts": {
     "test": "npm run build && node_modules/.bin/mocha --exit lib/tests",
     "prepublishOnly": "npm test",
-    "prepare": "npm run build",
+    "prepare": "npm run snyk-protect && npm run build",
     "preversion": "npm test",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
     "build": "tsc",
     "cover": "nyc --all --cache node_modules/.bin/mocha  lib/tests/index.js --exit -- -R spec",
-    "cover_report": "nyc report --reporter=lcov"
+    "cover_report": "nyc report --reporter=lcov",
+    "snyk-protect": "snyk protect"
   },
   "author": "Pedro Sousa Barreto <pedrosousabarreto@gmail.com>",
   "license": "MIT",
@@ -49,7 +50,8 @@
     "lodash": "^4.17.11",
     "request": "^2.88.0",
     "underscore": "^1.9.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@types/async": "^2.0.50",
@@ -68,5 +70,6 @@
     "nyc": "^13.3.0",
     "ts-node-dev": "^1.0.0-pre.32",
     "typescript": "^3.2.2"
-  }
+  },
+  "snyk": true
 }
